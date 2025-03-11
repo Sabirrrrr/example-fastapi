@@ -1,6 +1,6 @@
 from pydantic import BaseModel,ConfigDict, ValidationError, EmailStr, conint
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 '''
 Bir sınıf oluşturduk.
@@ -14,6 +14,8 @@ class Post(BaseModel):
     content: str
     published: bool = True
     # rating: Optional[int] = None   
+
+    model_config = {"from_attributes": True}
 
 # class CreatePost(BaseModel):
 #     title: str
@@ -41,8 +43,8 @@ class UserOut(BaseModel):
     id: int
     email : EmailStr
     created_at: datetime
-    class Config:
-        from_attributes = True
+    
+    model_config = {"from_attributes": True}
 
 
 
@@ -66,9 +68,7 @@ class Post(PostBase):
     owner_id : int
     owner : UserOut
     # id de postmande geliyor ancak biz bunu döndürmemeyi düşündük.
-    class Config:
-        from_attributes = True
-        #sqlalchemy ve pydantic ile alakalı bir config
+    model_config = {"from_attributes": True}
 
 
 class UserCreate(BaseModel):
@@ -98,5 +98,67 @@ class PostOut(BaseModel):
     Post: Post
     votes: int
 
-    class Config:
-        orm_mode = True
+    model_config = {"from_attributes": True}
+
+# Yiyecek ve besin değerleri için şemalar
+class Nutrient(BaseModel):
+    id: int
+    name: str
+    unit_name: str
+    amount: float = 0.0
+    
+    model_config = {"from_attributes": True}
+
+class FoodNutrient(BaseModel):
+    nutrient: Nutrient
+    amount: float
+    
+    model_config = {"from_attributes": True}
+
+class FoodBase(BaseModel):
+    description: str
+    
+    model_config = {"from_attributes": True}
+
+class FoodDetail(FoodBase):
+    fdc_id: int
+    data_type: Optional[str] = None
+    food_category_id: Optional[int] = None
+    publication_date: Optional[datetime] = None
+    # scientific_name sütunu veritabanında yok, kaldırıyoruz
+    # scientific_name: Optional[str] = None
+    
+    model_config = {"from_attributes": True}
+
+class FoodNutrientResponse(BaseModel):
+    food: FoodDetail
+    nutrients: List[Nutrient]
+    
+    model_config = {"from_attributes": True}
+
+class MacroNutrients(BaseModel):
+    calories: float = 0.0
+    protein: float = 0.0
+    fat: float = 0.0
+    carbohydrates: float = 0.0
+    
+    model_config = {"from_attributes": True}
+
+class MicroNutrients(BaseModel):
+    vitamins: List[Nutrient] = []
+    minerals: List[Nutrient] = []
+    
+    model_config = {"from_attributes": True}
+
+class Phytochemicals(BaseModel):
+    compounds: List[Nutrient] = []
+    
+    model_config = {"from_attributes": True}
+
+class NutrientSummary(BaseModel):
+    food: FoodDetail
+    macronutrients: MacroNutrients
+    micronutrients: MicroNutrients
+    phytochemicals: Phytochemicals
+    
+    model_config = {"from_attributes": True}

@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from . import models
 from .database import engine
-from .routers import post,user, auth,vote
+from .routers import post,user, auth,vote, google_auth, food
 
 # ***************************************************************************
 
@@ -25,13 +25,10 @@ Creating instance of fastapi
 '''
 app = FastAPI() 
 
-
-origins = ["*"]
-#     "http://localhost.tiangolo.com",
-#     "https://localhost.tiangolo.com",
-#     "http://localhost",
-#     "http://localhost:8080",
-#       ["*"]   ----> all domains
+origins = [
+    "http://localhost:3000",  # Frontend development URL
+    "http://127.0.0.1:3000",  # Alternative frontend URL
+]
 
 app.add_middleware(
     CORSMiddleware,
@@ -52,6 +49,8 @@ app.include_router(post.router)
 app.include_router(user.router)
 app.include_router(auth.router)
 app.include_router(vote.router)
+app.include_router(google_auth.router)
+app.include_router(food.router)
 # ***************************************************************************
 
 # ***************************************************************************
@@ -66,8 +65,5 @@ Fastapi automatically converts this dict to json.
 '''
 @app.get("/")                                       
 async def root():                                   
-    return {"message": "Hello World this is Constantine"}               
+    return {"message": "Hello World this is Constantine and i think everything is ok for now :) try1."}               
 # ***************************************************************************
-
-
-

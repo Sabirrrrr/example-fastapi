@@ -1,0 +1,65 @@
+							
+FNDDS -> FDC Crosswalk		Data was imported from FNDDS 2021-2023 MS Access database to FDC CSV files					
+Main goal is to document where imported survey (FNDDS) data is stored in FDC							
+	FNDDS Table Name	FNDDS Column Name		FDC Table Name*	FDC Column Name*	FDC Location on Website	Migration Notes
+	AddFoodDesc	Food code		food_attribute	fdc_id	Food Details -> FDC ID	Used to link to survey_fndds_food . food_code
+	AddFoodDesc	Seq num		food_attribute	seq_num	Other Information -> Seq num	
+	AddFoodDesc	Start date		survey_fndds_food	start_date	Food Details -> Start date	
+	AddFoodDesc	End date		survey_fndds_food	end_date	Food Details -> End date	
+	AddFoodDesc	Additional food description		food_attribute	value	Other Information -> Additional Description	
+	DerivDesc	derivation_ code		fndds_derivation	derivation_code (colname says "SR 28 derivation code")		
+	DerivDesc	derivation_description		fndds_derivation	derivation_description (colname says "SR 28 derivation description")		
+	FNDDSNutVal	Food code		food_nutrient	fdc_id	Food Details -> FDC ID	Used to link to survey_fndds_food . food_code
+	FNDDSNutVal	Nutrient code		food_nutrient	nutrient_id		Based on nutrient.nutrient_nbr = 'Nutrient code'
+	FNDDSNutVal	Start date		survey_fndds_food	start_date	Food Details -> Start date	
+	FNDDSNutVal	End date		survey_fndds_food	end_date	Food Details -> End date	
+	FNDDSNutVal	Nutrient value		food_nutrient	amount	Nutrients - > Amount	
+	FNDDSRecCount	Full File Name					
+	FNDDSRecCount	no_of_records					
+	FNDDSIngred	Food code		input_food	fdc_id	Food Details -> FDC ID	Used to link to survey_fndds_food . food_code
+	FNDDSIngred	Start date		survey_fndds_food	start_date	Food Details -> Start date	
+	FNDDSIngred	End date		survey_fndds_food	end_date	Food Details -> End date	
+	FNDDSIngred	Seq num		input_food	seq_num	Ingredients -> Seq Num	
+	FNDDSIngred	Ingredient code		input_food	ingredient_code	Ingredients -> Ingredient Code	
+	FNDDSIngred	Ingredient description		input_food	ingredient_description	Ingredients -> Ingredient Description	
+	FNDDSIngred	Amount		input_food	amount	Ingredients -> Amount	
+	FNDDSIngred	Measure		input_food	unit		
+	FNDDSIngred	Portion code		input_food	portion_code	Portions -> Portion Code	
+	FNDDSIngred	Retention code		input_food	retention_code	Ingredients -> Retention Code	
+	FNDDSIngred	Ingredient weight		input_food	gram_weight	Ingredients -> Ingredient Weight(g)	
+	FoodPortionDesc	Portion code		food_portion	modifier		
+	FoodPortionDesc	Start date		survey_fndds_food	start_date	Food Details -> Start date	
+	FoodPortionDesc	End date		survey_fndds_food	end_date	Food Details -> End date	
+	FoodPortionDesc	Portion description		food_portion	portion_description	Portions -> Portion Description	
+	FoodWeights	Food code		food_portion	fdc_id	Food Details -> FDC ID	Used to link to survey_fndds_food . food_code
+	FoodWeights	Seq num		food_portion	seq_num		
+	FoodWeights	Portion code		food_portion	modifier	Portions -> Portion code	
+	FoodWeights	Start date		survey_fndds_food	start_date	Food Details -> Start date	
+	FoodWeights	End date		survey_fndds_food	end_date	Food Details -> End date	
+	FoodWeights	Portion weight		food_portion	gram_weight	Portions -> Weight (g)	
+	IngredNutVal	Ingredient code		fndds_ingredient_nutrient_value	ingredient_code		
+	IngredNutVal	ingredient description		fndds_ingredient_nutrient_value	ingredient_description		
+	IngredNutVal	Nutrient code		fndds_ingredient_nutrient_value	nutrient_code		
+	IngredNutVal	Nutrient value		fndds_ingredient_nutrient_value	nutrient_value		
+	IngredNutVal	Nutrient value source		fndds_ingredient_nutrient_value	nutrient_value_source		
+	IngredNutVal	FDC ID		fndds_ingredient_nutrient_value	fdc_id		
+	IngredNutVal	Derivation code		fndds_ingredient_nutrient_value	derivation_code		
+	IngredNutVal	SR AddMod year		fndds_ingredient_nutrient_value	sr_addmod_year		
+	IngredNutVal	Foundation year acquired		fndds_ingredient_nutrient_value	foundation_year_acquired		
+	IngredNutVal	Start date		fndds_ingredient_nutrient_value	start_date		
+	IngredNutVal	End date		fndds_ingredient_nutrient_value	end_date		
+	MainFoodDesc	Food code		survey_fndds_food	food_code	Food Details -> Food Code	
+	MainFoodDesc	Start date		survey_fndds_food	start_date	Food Details -> Start date	
+	MainFoodDesc	End date		survey_fndds_food	end_date	Food Details -> End date	
+	MainFoodDesc	Main food description		food	description	Food Details -> Main Food Description	
+	MainFoodDesc	WWEIA Category number		food_attribute	value	Other Information	Populates wweia_food_category.wweia_food_category
+	MainFoodDesc	WWEIA Category description		food_attribute	value	Other Information	Populates wweia_food_category.wweia_food_category_description
+	MoistAdjust	Food code		food_attribute	fdc_id	Food Details -> FDC ID	Used to link to survey_fndds_food . food_code
+	MoistAdjust	Start date		survey_fndds_food	start_date	Food Details -> Start date	
+	MoistAdjust	End date		survey_fndds_food	end_date	Food Details -> End date	
+	MoistAdjust	Moisture change		food_attribute	value	Other Information -> Adjustments	Values for Moisture Change are for records in which food_attribute_type_id =1002 in the food_attribute table
+	NutDesc	Nutrient code		nutrient	nutrient_nbr		
+	NutDesc	Nutrient description		nutrient	name		
+	NutDesc	Tagname					
+	NutDesc	Unit		nutrient	unit_name		
+	NutDesc	Decimals					

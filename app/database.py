@@ -29,19 +29,19 @@ def get_db():
         db.close()
 
 
-# ***************************************************************************
-'''
-Surekli bir dongu icerisinde kalarak db baglantisinin gerceklesmesini bekler
-Burayı artık kullanmıyoruz.
-'''
-while True:
-    try:
-        conn = psycopg2.connect(host='localhost' , database='fastapi', user='postgres', password='sabir123QW!&', cursor_factory=RealDictCursor)
-        cursor = conn.cursor()
-        print("Database connection was succesfull!")
-        break
-    except Exception as error:
-        print("Connectiong to database failed")
-        print("Error:", error)
-        time.sleep(2)
-# ***************************************************************************
+# # ***************************************************************************
+# '''
+# Surekli bir dongu icerisinde kalarak db baglantisinin gerceklesmesini bekler
+# Burayı artık kullanmıyoruz.
+# '''
+# while True:
+#     try:
+#         conn = psycopg2.connect(host='localhost' , database='fastapi', user='postgres', password='sabir123QW!&', cursor_factory=RealDictCursor)
+#         cursor = conn.cursor()
+#         print("Database connection was succesfull!")
+#         break
+#     except Exception as error:
+#         print("Connectiong to database failed")
+#         print("Error:", error)
+#         time.sleep(2)
+# # ***************************************************************************
